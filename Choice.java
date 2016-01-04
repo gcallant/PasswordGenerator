@@ -44,7 +44,7 @@ public class Choice {
         }
         return length;
     }//end method
-    
+
     /**
      * @brief Asks the user whether they want symbols/other miscellaneous stuff in their passwords
      *
@@ -82,12 +82,35 @@ public class Choice {
         }
         return want;
     }
+    /** @brief Asks the user how many symbols they want in their password.
+     *
+     * @param kb A Scanner object that must be passed in.
+     *
+     * @return how many symbols the user would like in their password.
+     *
+     *
+     */
     public static int readSymbolChoice(Scanner kb){
+        boolean go = true;
+        int choice = 0;
 
-
-        return 0;
+        while(go){
+            try{
+                System.out.println("How many symbols would you like in your password?");
+                choice = kb.nextInt();
+                if(choice < 0)
+                    throw new InputMismatchException();
+                go = false;
+            }catch(InputMismatchException e){
+                System.out.println("Invalid input!");
+                go = true;
+            }
+            catch(Exception e){
+                System.out.println("An error occurred");
+            }
+        }
+        return choice;
     }
-
     public static boolean readChoiceForDigits(Scanner kb){
 
 
