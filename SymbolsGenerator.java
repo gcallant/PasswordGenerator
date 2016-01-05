@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created by Boyette on 11/19/2015.
  */
@@ -9,7 +11,8 @@ public class SymbolsGenerator{
      * creates a new SymbolGenerator object
      */
     public SymbolsGenerator(){
-        this.symbol = null;
+        this.symbol = ""; /*Prevents a nullPointerException if class is instantiated, and 
+        getLength is called on null string. */
     }
 
     /**
@@ -36,7 +39,12 @@ public class SymbolsGenerator{
 
     public void setSymbol(int randomNum){
         if(randomNum < 0 || randomNum > this.symbols.length){
-            throw new IndexOutOfBoundsException();
+            Random rand = new Random(System.currentTimeMillis());
+            
+            //Range of Random Number
+            int high = symbols.length - 1;
+            int low = 0;
+            randomNum = rand.nextInt(high - low) + low; //Zero in this case, but added for convention
         }
         this.symbol = this.symbols[randomNum];
     }
